@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import Greeting from "./Greeting"
+import userEvent from "@testing-library/user-event"
 
 describe("this is to check the custom build fuctions",()=>{
 
@@ -25,6 +26,22 @@ describe("this is to check the custom build fuctions",()=>{
 
         const handlecase=screen.getByText('Hey this is before case',{exact:false})
         expect(handlecase).toBeInTheDocument();
+
+    })
+
+    test('this is on the button click',()=>{
+        // Arrange
+        render(<Greeting/>)
+
+        // Act
+        const element=screen.getByRole("button")
+        userEvent.click(element)
+     
+        //Assert
+        const handlecase=screen.getByText('This is changed case')
+        expect(handlecase).toBeInTheDocument();
+
+        
 
     })
 
